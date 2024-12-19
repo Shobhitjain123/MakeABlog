@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import authService from '../appwrite/auth'
 import { Link, useNavigate } from 'react-router-dom'
-import { login } from '../features/authSlice'
+import { login } from '../store/authSlice'
 import { Button, Input, Logo } from './index'
 import { set, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
@@ -17,8 +17,14 @@ function SignUp() {
         try {
             const userData = await authService.createAccount(data)
             if (userData) {
+                // console.log(userData);
+                
                 const userData = await authService.getCurrentUser()
-                if (userData) dispatch(login(userData))
+                if (userData) {
+                    
+                    dispatch(login(userData))
+                }
+                    
                 navigate("/")
             }
         } catch (error) {
@@ -36,7 +42,7 @@ function SignUp() {
                 </div>
                 <h2 className='text-center text-2xl font-bold leading-tight'>Sign Up to create an account</h2>
                 <p className='mt-2 text-center text-base text-black/60'>
-                    Already have an account?&npsp;
+                    Already have an account? 
                     <Link to="/login" className='font-medium text-primary transition-all duration-200 hover:underline'>
                         Sign In
                     </Link>
@@ -49,7 +55,7 @@ function SignUp() {
                         <Input
                             label="Full Name: "
                             placeholder="Enter Your Full name"
-                            type="Email"
+                            type="text"
                             {...register("name", {
                                 required: true
                             })}
@@ -77,7 +83,7 @@ function SignUp() {
                             })
                             }
                         />
-                        <Button type='submit' clasName='w-full'>Create Account</Button>
+                        <Button type='submit' className='w-full'>Create Account</Button>
                     </div>
                 </form>
             </div>

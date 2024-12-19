@@ -29,14 +29,19 @@ function Header() {
             name: "All Posts",
             slug: "/all-posts",
             active: authStatus
+        },
+        {
+            name: "Add Posts",
+            slug: "/add-post",
+            active: authStatus
         }
     ]
 
     return (
-        <Header clasName="py-3 shadow bg-gray-500">
+        <header className="py-3 shadow bg-gray-500">
             <Container>
-                <nav className='flex'>
-                    <div className='mr-4'>
+                <nav className='flex justify-center'>
+                    <div className='mr-4 flex'>
                         <Link to="/">
                             <Logo width='70px' />
                         </Link>
@@ -67,7 +72,7 @@ function Header() {
 
                 </nav>
             </Container>
-        </Header>
+        </header>
     )
 }
 

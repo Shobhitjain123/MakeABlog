@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import authService from './appwrite/auth'
-import { login, logout } from './features/authSlice'
+import { login, logout } from './store/authSlice'
 import { Header, Footer } from './components/index'
 import { Outlet } from 'react-router-dom'
 import './App.css'
@@ -22,23 +22,21 @@ function App() {
         }
       })
       .finally(() => {
-        return setLoading(false)
-      })
+        setLoading(false);        
+  })
   }, [])
 
-  return !loading ? (
+  return true ? (
     <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
       <div className='w-full block'>
         <Header />
         <main>
-          TODO: {/* <Outlet /> */}
+        <Outlet />
         </main>
         <Footer />
       </div>
     </div>
-  ) : (
-    <div>Loading...</div>
-  )
+  ) : null
 }
 
 export default App

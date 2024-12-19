@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
-import { Login as authLogin} from '../features/authSlice'
-import {Button, Input, Logo} from './index'
+import { login as authLogin} from '../store/authSlice'
+import {Button, Logo} from './index'
 import { useDispatch } from 'react-redux'
 import authService from '../appwrite/auth'
 import {useForm} from 'react-hook-form'
+import Input from './Input'
 
 function Login() {
     const navigate = useNavigate()
@@ -69,11 +70,12 @@ function Login() {
                                 })
                             }
                         />
-                        <Button type="Submit" clasName='w-full'>Sign In</Button>
+                        <Button type="Submit" className='w-full'>Sign In</Button>
                     </div>
                 </form>
             </div>
         </div>
+       
     )
 }
 

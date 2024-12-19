@@ -8,8 +8,8 @@ export class Service{
 
     constructor(){
         this.client
-            .setEndpoint(conf.VITE_APPWRITE_URL)
-            .setProject(conf.VITE_APPWRITE_PROJECT_ID)
+            .setEndpoint(conf.appwriteURL)
+            .setProject(conf.appwriteProjectId)
         this.databases = new Databases(this.client)
         this.bucket = new Storage(this.client)
     }
@@ -34,7 +34,7 @@ export class Service{
         }
     }
 
-    async updatePost({title, slug, content, featuredImage, status}){
+    async updatePost(slug, {title, content, featuredImage, status}){
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
